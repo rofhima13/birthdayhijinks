@@ -152,7 +152,7 @@
                 let years;
                 const birthdate = new Date(formData.birthday);
 
-                let birthday = birthdate;
+                let birthday = new Date(birthdate); // Ensure it's a new Date object to avoid mutating the original date
                 const weekday = formData.weekday;
                 const today = new Date();
 
@@ -167,25 +167,38 @@
                     years = 0;
                 }
 
-                while (birthday.getDay() !== weekdayNumber) {
-                    if (birthday.getDate() === 29 && birthday.getMonth() === 1) {
-                        year += 4;
-                        birthday.setFullYear(year);
-                        years += 4;
-                    } else {
-                        year++;
-                        birthday.setFullYear(year);
-                        years++;
+                birthday.setFullYear(year); // Start with the current year
+
+                // Check if the birthday already falls on the chosen weekday
+                if (birthday.getDay() !== weekdayNumber || (birthday < today && birthday.getDay() === weekdayNumber)) {
+                    while (birthday.getDay() !== weekdayNumber || birthday < today) {
+                        if (birthday.getDate() === 29 && birthday.getMonth() === 1) {
+                            year += 4;
+                            birthday.setFullYear(year);
+                            years += 4;
+                        } else {
+                            year++;
+                            birthday.setFullYear(year);
+                            years++;
+                        }
                     }
                 }
 
                 if (years === 0) {
-                    setOutput(`You will have your birthday on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} this year!`);
+                    setOutput(
+                        `Your birthday falls on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} this year!`
+                    );
                 } else if (years === 1) {
-                    setOutput(`You will have your birthday on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} next year!`);
+                    setOutput(
+                        `Your birthday will fall on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} next year!`
+                    );
                 } else {
-                    setOutput(`You will have your birthday on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} in ${years} years time, in the year ${year}!`);
+                    setOutput(
+                        `Your birthday will fall on ${weekday.charAt(0).toUpperCase() + weekday.slice(1)} in ${years} years, in the year ${year}!`
+                    );
                 }
+
+
 
                 // Fetch interesting facts
                 async function fetchFacts() {
@@ -193,7 +206,7 @@
                     const year = birthdate.getFullYear();
                     const month = String(birthdate.getMonth() + 1).padStart(2, '0');
                     const day = String(birthdate.getDate()).padStart(2, '0');
-                    const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/featured/${year}/${month}/${day}`;
+                    const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/featured/${new Date().getFullYear() - 1}/${month}/${day}`;
 
                     try {
                         const response = await fetch(url, {
