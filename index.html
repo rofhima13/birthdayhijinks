@@ -375,7 +375,8 @@
                                         <p>*This data is sourced from <a class='read-more-link' href='https://www.kaggle.com/datasets/dharun4772/celebrity-birthdays-full-calendar-year'>Kaggle.</a></p>
                                     </div>
                                     <div className="container">
-                                        <h2>Some interesting facts about your birthday:</h2>
+                                        <h2>Historical events on your birthday:</h2>
+                                        <p>WARNING: Some of these facts may be disturbing, a sentiment analysis algorithm is being considered to filter them out.</p>
                                         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                                             {onThisDay.map((fact, index) => (
                                                 <div key={index} className="col">
@@ -405,7 +406,7 @@
                                                         }
 
                                                         <div className="card-body">
-                                                            <p className="card-text">
+                                                            <div className="card-text">
                                                                 In <a class='read-more-link' target='_blank' href={`https://en.wikipedia.org/wiki/${fact.year}`}>{fact.year}</a>, {fact.text}{" "}
                                                                 <hr />
                                                                 <h5>Read more:</h5>
@@ -414,7 +415,7 @@
                                                                         <li><a class='read-more-link' target='_blank' href={page.content_urls.desktop.page}>{page.titles.normalized}</a></li>
                                                                     ))}
                                                                 </ul>
-                                                            </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
