@@ -157,7 +157,8 @@
                 const today = new Date();
 
                 const weekdayNumber = weekdayMap[weekday.toLowerCase()];
-
+                
+                // Last elapsed year for leap year handling
                 if (birthday.getDate() === 29 && birthday.getMonth() === 1) {
                     const diff = 2024 - today.getFullYear();
                     year = 2024;
@@ -211,8 +212,7 @@
                     try {
                         const response = await fetch(url, {
                             headers: {
-                                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1M2NhMzJkMjFkMDc3MmVkMjAwNjQ3MTMwZDUyMTJlYiIsImp0aSI6Ijc3NGZmMzk2MTUyOWQ3MTNjNjI1YjRhOGE2MTY2NDAyNzFiZDQ1ZjM2MGU2ZDgwYjM2MTcwYzM0ZDAxNTNjNTMwOTk5YzRkMDM1MTQxYzc0IiwiaWF0IjoxNzM3NTg5MjkyLjgzNDU3NywibmJmIjoxNzM3NTg5MjkyLjgzNDU4LCJleHAiOjMzMjk0NDk4MDkyLjgzMTE5Miwic3ViIjoiNzc0NjAxNzQiLCJpc3MiOiJodHRwczovL21ldGEud2lraW1lZGlhLm9yZyIsInJhdGVsaW1pdCI6eyJyZXF1ZXN0c19wZXJfdW5pdCI6NTAwMCwidW5pdCI6IkhPVVIifSwic2NvcGVzIjpbImJhc2ljIl19.jDqCkfkaLSmQf6Nqp_yleRzCx-_L8qals_D5rglSfVnYyC3QZLSq9WQNIVFoNGmhJAnO7G2PZUCX1ag0ISMlyAcyFSY5u1Qq4lvvcWLMZJQoMiYfaQYLH_DTYtt2qPmPKbkxW2bhz09a7j9KF3sHc5HgTipvHEFUXg7G4ZK9wR9UB6u3DjN701hVU4y9OdxnJPhl8TnGUDRfpQIVmGDHbfkeXUdw5HXvxOouzU7COxwTYRoIPRNBx9XuNsBrR1s6KX4EiBcVvFRQZZjN3Y9wFuti37puHmj_SaIvG6ugd7N1SpRHVf5HME-WwZOiof18VvZ_RRY2Li0OYhwSus0zXNq9q0csiRqHxz7wJRZRZSms1zlKVJVd6c_FSu5woDEIvpgO56R6TTPem133jRaRFFYSkehh56ns4x1rZyiYpjeyI75cIr_xKG6nkT0xdXwUbmkFzmk3ZxZn16JIAUQopSTQgHznNsWJ4vdnZcE4DhMrXRzfSwPjT7z5k0LJk8rytSQye3CXAusLlA1CSmU8lr9s1ho1F6Pm9msYQaRX8uANzPalIQADrB9yurKSFSh6Ee5yQfkPRGpL_ltFDETKkr33f4clRODloy-TsxcuIDfZTXi7h1OfLhUVYrFSpdDmABrfB8kiMipzasQ_KtlkOgMyexetA_NTXvBbBHC26J4',
-                                'Api-User-Agent': 'rofhima13@gmail.com'
+                                'Api-User-Agent': 'MySite/1.0 (contact: rofhima13@gmail.com)'
                             }
                         });
                         const data = await response.json();
